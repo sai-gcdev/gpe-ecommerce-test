@@ -2,28 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body onload="loadCart()">
+<body>
   <header>
-    <h1>Cart</h1>
-    <div class="profile-icon">👤</div>
+    <div class="logo">🛒 MyShop - Cart</div>
   </header>
 
   <main>
-    <div id="cart-items"></div>
-    <div class="nav-buttons">
-      <button onclick="window.location.href='index.html'">Home</button>
-      <button onclick="window.location.href='products.html'">Back</button>
-      <button id="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
-    </div>
+    <section class="content">
+      <button onclick="history.back()" style="margin-bottom: 1rem;">← Back to Shop</button>
+      <h2>Your Cart</h2>
+      <div id="cart-items" class="product-grid"></div>
+    </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 GPE E-Commerce</p>
-  </footer>
-  <script src="script.js"></script>
+  <script>
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+      cart.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" />
+          <h4>${product.name}</h4>
+          <p>$${product.price}</p>
+        `;
+        cartItemsContainer.appendChild(card);
+      });
+    }
+  </script>
 </body>
 </html>
