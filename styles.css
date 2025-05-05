@@ -135,6 +135,21 @@ main {
   color: #888;
 }
 
+.product-card button {
+  margin: 0.25rem;
+  padding: 0.5rem;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #232f3e;
+  color: white;
+}
+
+.product-card button:hover {
+  background-color: #3b4c62;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   nav ul {
