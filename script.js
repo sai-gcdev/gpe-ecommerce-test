@@ -67,6 +67,9 @@ function removeFromCart(index) {
 function goToCheckout() {
   window.location.href = "checkout.html";
 }
+function goToCart() {
+  window.location.href = "cart.html";
+}
 function cancelOrder() {
   localStorage.removeItem("cart");
   window.location.href = "index.html";
