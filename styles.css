@@ -1,190 +1,43 @@
-/* Reset and Base Styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
+  padding: 20px;
+  background-color: #f5f5f5;
 }
 
-/* Header */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #232f3e;
-  color: #fff;
-  padding: 1rem;
 }
 
-.logo {
-  font-size: 1.5rem;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-}
-
-nav ul li {
-  margin-left: 1rem;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.hamburger {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-/* Layout */
-main {
-  display: flex;
-  padding: 1rem;
-}
-
-.sidebar {
-  width: 200px;
-  background-color: #fff;
-  padding: 1rem;
-  margin-right: 1rem;
-  border-radius: 5px;
-}
-
-.content {
-  flex: 1;
-}
-
-/* Accordion */
-.accordion-btn {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 0.5rem;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  margin-top: 0.5rem;
-  transition: background-color 0.3s ease;
-}
-
-.accordion-btn.active, .accordion-btn:hover {
-  background-color: #ccc;
-}
-
-.accordion-content {
-  padding: 0 0.5rem;
-  display: none;
-  flex-direction: column;
-}
-
-.accordion-content label {
-  margin: 0.5rem 0;
-}
-
-/* Controls */
-.controls {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.controls input[type="text"] {
-  width: 70%;
-  padding: 0.5rem;
-}
-
-.controls select {
-  width: 25%;
-  padding: 0.5rem;
-}
-
-/* Product Grid */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+input, select {
+  padding: 10px;
+  margin: 10px 5px;
 }
 
 .product-card {
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: 5px;
-  text-align: center;
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  border: 1px solid #ddd;
 }
 
 .product-card img {
-  max-width: 100%;
-  height: auto;
+  width: 100px;
 }
 
-.product-card h4 {
-  margin: 0.5rem 0;
-}
-
-.product-card p {
-  color: #888;
-}
-
-.product-card button {
-  margin: 0.25rem;
-  padding: 0.5rem;
-  width: 100%;
+button {
+  padding: 8px 12px;
+  margin-left: auto;
+  background-color: #007bff;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #232f3e;
   color: white;
+  cursor: pointer;
 }
 
-.product-card button:hover {
-  background-color: #3b4c62;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  nav ul {
-    display: none;
-    flex-direction: column;
-    background-color: #232f3e;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
-  }
-
-  nav ul.show {
-    display: flex;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  main {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  .controls {
-    flex-direction: column;
-  }
-
-  .controls input[type="text"], .controls select {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
+button.remove-button {
+  background-color: #dc3545;
 }
