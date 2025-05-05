@@ -1,120 +1,175 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
-  color: #333;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+}
+
+/* Header */
 header {
-  background-color: #1c1c1c;
-  color: #f2f2f2;
-  padding: 1.5rem 1rem;
-  font-size: 1.3rem;
-  position: relative;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-nav a {
-  margin: 0 15px;
-  color: #dcdcdc;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-nav a:hover {
-  color: #ffffff;
-}
-
-.hero {
-  padding: 2rem;
-  text-align: center;
-  background: #fdfdfd;
-  margin-top: 20px;
-}
-
-.product-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  padding: 2rem;
-}
-
-.product {
-  background: white;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #232f3e;
+  color: #fff;
   padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  text-align: center;
-  width: 200px;
-  transition: transform 0.2s;
-}
-.product:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.btn, button {
-  font-weight: bold;
-  background-color: #333;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
+.logo {
+  font-size: 1.5rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 1rem;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
   cursor: pointer;
-  margin-top: 10px;
+}
+
+/* Layout */
+main {
+  display: flex;
+  padding: 1rem;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #fff;
+  padding: 1rem;
+  margin-right: 1rem;
+  border-radius: 5px;
+}
+
+.content {
+  flex: 1;
+}
+
+/* Accordion */
+.accordion-btn {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  margin-top: 0.5rem;
   transition: background-color 0.3s ease;
 }
-button:hover, .btn:hover {
-  background-color: #555;
+
+.accordion-btn.active, .accordion-btn:hover {
+  background-color: #ccc;
 }
 
-footer {
-  background: #1c1c1c;
-  color: white;
+.accordion-content {
+  padding: 0 0.5rem;
+  display: none;
+  flex-direction: column;
+}
+
+.accordion-content label {
+  margin: 0.5rem 0;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.controls input[type="text"] {
+  width: 70%;
+  padding: 0.5rem;
+}
+
+.controls select {
+  width: 25%;
+  padding: 0.5rem;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.product-card {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
   text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
 }
 
-.profile-icon {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  font-size: 24px;
+.product-card img {
+  max-width: 100%;
+  height: auto;
 }
 
-.category-list {
-  list-style: none;
-  padding: 0;
-}
-.category-list li a {
-  display: block;
-  padding: 10px;
-  background: #f0f0f0;
-  margin: 5px 0;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
-}
-.category-list li a:hover {
-  background-color: #ddd;
+.product-card h4 {
+  margin: 0.5rem 0;
 }
 
-.nav-buttons {
-  margin-top: 20px;
-}
-.nav-buttons button {
-  margin-right: 10px;
+.product-card p {
+  color: #888;
 }
 
-#order-msg {
-  margin-top: 1.5rem;
-  background-color: #e0ffe0;
-  padding: 1rem;
-  border-left: 5px solid green;
-  font-weight: bold;
-  border-radius: 4px;
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: #232f3e;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .controls input[type="text"], .controls select {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
 }
