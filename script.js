@@ -1,106 +1,114 @@
-const allProducts = [
-  { id: 1, name: "Smartphone X", price: 499, category: "electronics" },
-  { id: 2, name: "Wireless Headphones", price: 199, category: "electronics" },
-  { id: 3, name: "T-Shirt", price: 25, category: "clothing" },
-  { id: 4, name: "Jeans", price: 45, category: "clothing" },
-  { id: 5, name: "Blender", price: 60, category: "home" },
-  { id: 6, name: "Air Purifier", price: 150, category: "home" }
+// Sample product data
+const products = [
+  {
+    id: 1,
+    name: "iPhone 12",
+    category: "phones",
+    price: 799,
+    image: "https://via.placeholder.com/150"
+  },
+  {
+    id: 2,
+    name: "MacBook Pro",
+    category: "laptops",
+    price: 1299,
+    image: "https://via.placeholder.com/150"
+  },
+  {
+    id: 3,
+    name: "Men's T-Shirt",
+    category: "men",
+    price: 25,
+    image: "https://via.placeholder.com/150"
+  },
+  {
+    id: 4,
+    name: "Women's Dress",
+    category: "women",
+    price: 45,
+    image: "https://via.placeholder.com/150"
+  },
+  // Add more products as needed
 ];
 
-function getCart() {
-  return JSON.parse(localStorage.getItem("cart") || "[]");
-}
-function setCart(cart) {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-function addToCart(productId) {
-  const product = allProducts.find(p => p.id === productId);
-  const cart = getCart();
-  cart.push(product);
-  setCart(cart);
-  alert(`${product.name} added to cart!`);
-}
-function loadProducts() {
-  const container = document.getElementById("product-container");
-  if (!container) return;
-  const params = new URLSearchParams(window.location.search);
-  const category = params.get("category");
-  const products = allProducts.filter(p => p.category === category);
-  container.innerHTML = products.map(product => `
-    <div class="product">
-      <h3>${product.name}</h3>
+// DOM Elements
+const productGrid = document.getElementById("product-grid");
+const searchInput = document.getElementById("search");
+const sortSelect = document.getElementById("sort");
+const categoryFilters = document.querySelectorAll(".category-filter");
+const accordionButtons = document.querySelectorAll(".accordion-btn");
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+
+// State
+let filteredProducts = [...products];
+
+// Functions
+function renderProducts(productsToRender) {
+  productGrid.innerHTML = "";
+  productsToRender.forEach(product => {
+    const productCard = document.createElement("div");
+    productCard.classList.add("product-card");
+    productCard.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+      <h4>${product.name}</h4>
       <p>$${product.price}</p>
-      <button onclick="addToCart(${product.id})">Add to Cart</button>
-    </div>
-  `).join("");
+    `;
+    productGrid.appendChild(productCard);
+  });
 }
-function loadCart() {
-  const cart = getCart();
-  const container = document.getElementById("cart-items");
-  const checkoutBtn = document.getElementById("checkout-btn");
 
-  if (!container) return;
+function filterProducts() {
+  const searchTerm = searchInput.value.toLowerCase();
+  const selectedCategories = Array.from(categoryFilters)
+    .filter(checkbox => checkbox.checked)
+    .map(checkbox => checkbox.value);
 
-  container.innerHTML = "";
-  if (cart.length === 0) {
-    container.innerHTML = "<p>Your cart is empty 🛒</p>";
-    if (checkoutBtn) checkoutBtn.disabled = true;
-  } else {
-    cart.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.className = "cart-item";
-      div.innerHTML = `
-        <span>${item.name} - $${item.price}</span>
-        <button onclick="removeFromCart(${index})">❌</button>
-      `;
-      container.appendChild(div);
-    });
-    if (checkoutBtn) checkoutBtn.disabled = false;
-  }
-}
-function removeFromCart(index) {
-  const cart = getCart();
-  cart.splice(index, 1);
-  setCart(cart);
-  loadCart();
-}
-function goToCheckout() {
-  window.location.href = "checkout.html";
-}
-function goToCart() {
-  window.location.href = "cart.html";
-}
-function cancelOrder() {
-  localStorage.removeItem("cart");
-  window.location.href = "index.html";
-}
-function placeOrder(event) {
-  event.preventDefault();
-
-  const cart = getCart();
-  const form = event.target;
-  const name = form.querySelector("input[placeholder='Full Name']").value;
-  const address = form.querySelector("input[placeholder='Address']").value;
-
-  const deliveryDate = new Date();
-  deliveryDate.setDate(deliveryDate.getDate() + 3);
-
-  const formattedDate = deliveryDate.toLocaleDateString(undefined, {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric"
+  filteredProducts = products.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+    const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
+    return matchesSearch && matchesCategory;
   });
 
-  const productNames = cart.map(item => item.name).join(", ");
-
-  document.getElementById("order-msg").innerText =
-    `🎉 Thank you, ${name}! Your order of (${productNames}) will be delivered to "${address}" on ${formattedDate}.`;
-
-  localStorage.removeItem("cart");
+  sortProducts();
+  renderProducts(filteredProducts);
 }
 
-window.onload = function() {
-  if (document.getElementById("cart-items")) loadCart();
-  if (document.getElementById("product-container")) loadProducts();
-};
+function sortProducts() {
+  const sortValue = sortSelect.value;
+  if (sortValue === "price-asc") {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  } else if (sortValue === "price-desc") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  } else if (sortValue === "name-asc") {
+    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortValue === "name-desc") {
+    filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+  }
+}
+
+// Event Listeners
+searchInput.addEventListener("input", filterProducts);
+sortSelect.addEventListener("change", filterProducts);
+categoryFilters.forEach(checkbox => checkbox.addEventListener("change", filterProducts));
+
+// Accordion functionality
+accordionButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    button.classList.toggle("active");
+    const content = button.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+});
+
+// Hamburger menu toggle
+hamburger.addEventListener("click", () => {
+  navMenu.querySelector("ul").classList.toggle("show");
+});
+
+// Initial render
+renderProducts(products);
