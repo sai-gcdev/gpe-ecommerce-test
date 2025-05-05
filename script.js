@@ -27,8 +27,7 @@ const products = [
     category: "women",
     price: 45,
     image: "https://via.placeholder.com/150"
-  },
-  // Add more products as needed
+  }
 ];
 
 // DOM Elements
@@ -40,10 +39,8 @@ const accordionButtons = document.querySelectorAll(".accordion-btn");
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("nav-menu");
 
-// State
 let filteredProducts = [...products];
 
-// Functions
 function renderProducts(productsToRender) {
   productGrid.innerHTML = "";
   productsToRender.forEach(product => {
@@ -53,9 +50,36 @@ function renderProducts(productsToRender) {
       <img src="${product.image}" alt="${product.name}" />
       <h4>${product.name}</h4>
       <p>$${product.price}</p>
+      <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+      <button class="add-to-wishlist" data-id="${product.id}">Wishlist ❤️</button>
     `;
     productGrid.appendChild(productCard);
   });
+
+  document.querySelectorAll(".add-to-cart").forEach(btn =>
+    btn.addEventListener("click", addToCart)
+  );
+  document.querySelectorAll(".add-to-wishlist").forEach(btn =>
+    btn.addEventListener("click", addToWishlist)
+  );
+}
+
+function addToCart(event) {
+  const id = parseInt(event.target.dataset.id);
+  const product = products.find(p => p.id === id);
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push(product);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(`${product.name} added to cart!`);
+}
+
+function addToWishlist(event) {
+  const id = parseInt(event.target.dataset.id);
+  const product = products.find(p => p.id === id);
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  wishlist.push(product);
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  alert(`${product.name} added to wishlist!`);
 }
 
 function filterProducts() {
@@ -87,28 +111,20 @@ function sortProducts() {
   }
 }
 
-// Event Listeners
 searchInput.addEventListener("input", filterProducts);
 sortSelect.addEventListener("change", filterProducts);
 categoryFilters.forEach(checkbox => checkbox.addEventListener("change", filterProducts));
 
-// Accordion functionality
 accordionButtons.forEach(button => {
   button.addEventListener("click", () => {
     button.classList.toggle("active");
     const content = button.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
+    content.style.display = content.style.display === "block" ? "none" : "block";
   });
 });
 
-// Hamburger menu toggle
 hamburger.addEventListener("click", () => {
   navMenu.querySelector("ul").classList.toggle("show");
 });
 
-// Initial render
 renderProducts(products);
