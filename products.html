@@ -4,38 +4,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GPE Store | Products</title>
+  <title>Products</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
-    <h1>GPE E-Commerce Store</h1>
+    <h1>Products</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
-      <a href="cart.html">Cart</a>
+      <a href="cart.html">View Cart</a>
+      <a href="checkout.html">Checkout</a>
+    </nav>
+  </header>
+
+  <main class="product-list">
+    <div class="product" data-id="1" data-name="Smartphone X" data-price="499">
+      <h3>Smartphone X</h3>
+      <p>$499</p>
+      <button onclick="addToCart(1)">Add to Cart</button>
+    </div>
+    <div class="product" data-id="2" data-name="Wireless Headphones" data-price="199">
+      <h3>Wireless Headphones</h3>
+      <p>$199</p>
+      <button onclick="addToCart(2)">Add to Cart</button>
+    </div>
+    <!-- Add more products as needed -->
+  </main>
+
+  <footer>
+    <p>&copy; 2025 GPE E-Commerce</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!-- cart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Your Cart</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
       <a href="checkout.html">Checkout</a>
     </nav>
   </header>
 
   <main>
-    <h2>Our Products</h2>
-    <div class="product-list">
-      <div class="product">
-        <h3><a href="product-detail.html">Smartphone X</a></h3>
-        <p>$499</p>
-        <a href="cart.html" class="btn">Add to Cart</a>
-      </div>
-      <div class="product">
-        <h3><a href="product-detail.html">Wireless Headphones</a></h3>
-        <p>$149</p>
-        <a href="cart.html" class="btn">Add to Cart</a>
-      </div>
-    </div>
+    <div id="cart-items"></div>
+    <button onclick="goToCheckout()">Proceed to Checkout</button>
   </main>
 
   <footer>
-    <p>&copy; 2025 GPE Store. All rights reserved.</p>
+    <p>&copy; 2025 GPE E-Commerce</p>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>
