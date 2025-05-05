@@ -7,19 +7,18 @@
   <title>Cart</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body onload="loadCart()">
   <header>
-    <h1>Your Cart</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="checkout.html">Checkout</a>
-    </nav>
+    <h1>Cart</h1>
+    <div class="profile-icon">👤</div>
   </header>
 
   <main>
     <div id="cart-items"></div>
-    <button onclick="goToCheckout()">Proceed to Checkout</button>
+    <div class="nav-buttons">
+      <button onclick="window.location.href='products.html'">Back</button>
+      <button onclick="goToCheckout()">Proceed to Checkout</button>
+    </div>
   </main>
 
   <footer>
