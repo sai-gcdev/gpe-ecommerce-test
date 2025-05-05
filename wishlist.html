@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Wishlist</title>
+  <style>
+    /* Basic styles for the wishlist page */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .product-card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .product-card img {
+      width: 100px;
+      margin-right: 15px;
+    }
+    .product-info {
+      flex-grow: 1;
+    }
+    .remove-button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Wishlist</h1>
+  <div id="wishlist-container"></div>
+
+  <script>
+    // Function to render wishlist items
+    function renderWishlist() {
+      const wishlistContainer = document.getElementById('wishlist-container');
+      const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+      if (wishlist.length === 0) {
+        wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
+        return;
+      }
+
+      wishlistContainer.innerHTML = '';
+      wishlist.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+
+        productCard.innerHTML = \`
+          <img src="\${product.image}" alt="\${product.name}" />
+          <div class="product-info">
+            <h4>\${product.name}</h4>
+            <p>$\${product.price}</p>
+          </div>
+          <button class="remove-button" data-id="\${product.id}">Remove</button>
+        \`;
+
+        wishlistContainer.appendChild(productCard);
+      });
+
+      // Attach event listeners to remove buttons
+      document.querySelectorAll('.remove-button').forEach(button => {
+        button.addEventListener('click', removeFromWishlist);
+      });
+    }
+
+    // Function to remove item from wishlist
+    function removeFromWishlist(event) {
+      const productId = parseInt(event.target.dataset.id);
+      let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      wishlist = wishlist.filter(product => product.id !== productId);
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      renderWishlist();
+    }
+
+    // Initial render
+    renderWishlist();
+  </script>
+</body>
+</html>
