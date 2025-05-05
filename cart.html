@@ -4,28 +4,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GPE Store | Cart</title>
+  <title>Cart</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
-    <h1>GPE E-Commerce Store</h1>
+    <h1>Your Cart</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
-      <a href="cart.html">Cart</a>
       <a href="checkout.html">Checkout</a>
     </nav>
   </header>
 
   <main>
-    <h2>Your Cart</h2>
-    <p>1x Smartphone X - $499</p>
-    <a href="checkout.html" class="btn">Proceed to Checkout</a>
+    <div id="cart-items"></div>
+    <button onclick="goToCheckout()">Proceed to Checkout</button>
   </main>
 
   <footer>
-    <p>&copy; 2025 GPE Store. All rights reserved.</p>
+    <p>&copy; 2025 GPE E-Commerce</p>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>
