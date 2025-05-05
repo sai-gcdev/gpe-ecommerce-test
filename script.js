@@ -1,4 +1,3 @@
-// Sample product data
 const products = [
   {
     id: 1,
@@ -30,35 +29,32 @@ const products = [
   }
 ];
 
-// DOM Elements
 const productGrid = document.getElementById("product-grid");
 const searchInput = document.getElementById("search");
 const sortSelect = document.getElementById("sort");
 const categoryFilters = document.querySelectorAll(".category-filter");
-const accordionButtons = document.querySelectorAll(".accordion-btn");
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("nav-menu");
 
 let filteredProducts = [...products];
 
 function renderProducts(productsToRender) {
   productGrid.innerHTML = "";
   productsToRender.forEach(product => {
-    const productCard = document.createElement("div");
-    productCard.classList.add("product-card");
-    productCard.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" />
-      <h4>${product.name}</h4>
-      <p>$${product.price}</p>
-      <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
-      <button class="add-to-wishlist" data-id="${product.id}">Wishlist ❤️</button>
-    `;
-    productGrid.appendChild(productCard);
+    const card = document.createElement("div");
+    card.classList.add("product-card");
+    card.innerHTML = \`
+      <img src="\${product.image}" alt="\${product.name}" />
+      <h4>\${product.name}</h4>
+      <p>$\${product.price}</p>
+      <button class="add-to-cart" data-id="\${product.id}">Add to Cart</button>
+      <button class="add-to-wishlist" data-id="\${product.id}">Wishlist ❤️</button>
+    \`;
+    productGrid.appendChild(card);
   });
 
   document.querySelectorAll(".add-to-cart").forEach(btn =>
     btn.addEventListener("click", addToCart)
   );
+
   document.querySelectorAll(".add-to-wishlist").forEach(btn =>
     btn.addEventListener("click", addToWishlist)
   );
@@ -70,27 +66,33 @@ function addToCart(event) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.push(product);
   localStorage.setItem("cart", JSON.stringify(cart));
-  alert(`${product.name} added to cart!`);
+  alert(\`\${product.name} added to cart!\`);
 }
 
 function addToWishlist(event) {
   const id = parseInt(event.target.dataset.id);
   const product = products.find(p => p.id === id);
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-  wishlist.push(product);
-  localStorage.setItem("wishlist", JSON.stringify(wishlist));
-  alert(`${product.name} added to wishlist!`);
+
+  if (!wishlist.some(item => item.id === product.id)) {
+    wishlist.push(product);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    alert(\`\${product.name} added to wishlist!\`);
+  } else {
+    alert(\`\${product.name} is already in wishlist!\`);
+  }
 }
 
 function filterProducts() {
   const searchTerm = searchInput.value.toLowerCase();
   const selectedCategories = Array.from(categoryFilters)
-    .filter(checkbox => checkbox.checked)
-    .map(checkbox => checkbox.value);
+    .filter(cb => cb.checked)
+    .map(cb => cb.value);
 
   filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm);
-    const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
+    const matchesCategory =
+      selectedCategories.length === 0 || selectedCategories.includes(product.category);
     return matchesSearch && matchesCategory;
   });
 
@@ -99,32 +101,15 @@ function filterProducts() {
 }
 
 function sortProducts() {
-  const sortValue = sortSelect.value;
-  if (sortValue === "price-asc") {
-    filteredProducts.sort((a, b) => a.price - b.price);
-  } else if (sortValue === "price-desc") {
-    filteredProducts.sort((a, b) => b.price - a.price);
-  } else if (sortValue === "name-asc") {
-    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (sortValue === "name-desc") {
-    filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
-  }
+  const value = sortSelect.value;
+  if (value === "price-asc") filteredProducts.sort((a, b) => a.price - b.price);
+  if (value === "price-desc") filteredProducts.sort((a, b) => b.price - a.price);
+  if (value === "name-asc") filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+  if (value === "name-desc") filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
 }
 
 searchInput.addEventListener("input", filterProducts);
 sortSelect.addEventListener("change", filterProducts);
-categoryFilters.forEach(checkbox => checkbox.addEventListener("change", filterProducts));
+categoryFilters.forEach(cb => cb.addEventListener("change", filterProducts));
 
-accordionButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    button.classList.toggle("active");
-    const content = button.nextElementSibling;
-    content.style.display = content.style.display === "block" ? "none" : "block";
-  });
-});
-
-hamburger.addEventListener("click", () => {
-  navMenu.querySelector("ul").classList.toggle("show");
-});
-
-renderProducts(products);
+renderProducts(filteredProducts);
