@@ -3,56 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MyShop</title>
+  <title>Product Catalog</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
-    <div class="logo">🛒 MyShop</div>
-    <nav id="nav-menu">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Deals</a></li>
-        <li><a href="cart.html">Cart</a></li>
-      </ul>
-    </nav>
-    <div class="hamburger" id="hamburger">&#9776;</div>
+    <h1>My Store</h1>
+    <a href="wishlist.html">Go to Wishlist ❤️</a>
   </header>
 
-  <main>
-    <aside class="sidebar">
-      <h3>Categories</h3>
-      <div class="accordion">
-        <button class="accordion-btn">Electronics</button>
-        <div class="accordion-content">
-          <label><input type="checkbox" class="category-filter" value="phones" /> Phones</label>
-          <label><input type="checkbox" class="category-filter" value="laptops" /> Laptops</label>
-        </div>
-        <button class="accordion-btn">Clothing</button>
-        <div class="accordion-content">
-          <label><input type="checkbox" class="category-filter" value="men" /> Men</label>
-          <label><input type="checkbox" class="category-filter" value="women" /> Women</label>
-        </div>
-      </div>
-    </aside>
+  <input type="text" id="search" placeholder="Search products..." />
+  <select id="sort">
+    <option value="">Sort By</option>
+    <option value="price-asc">Price: Low to High</option>
+    <option value="price-desc">Price: High to Low</option>
+    <option value="name-asc">Name: A-Z</option>
+    <option value="name-desc">Name: Z-A</option>
+  </select>
 
-    <section class="content">
-      <div class="controls">
-        <input type="text" id="search" placeholder="Search products..." />
-        <select id="sort">
-          <option value="">Sort by</option>
-          <option value="price-asc">Price: Low to High</option>
-          <option value="price-desc">Price: High to Low</option>
-          <option value="name-asc">Name: A-Z</option>
-          <option value="name-desc">Name: Z-A</option>
-        </select>
-      </div>
+  <div>
+    <label><input type="checkbox" class="category-filter" value="phones" /> Phones</label>
+    <label><input type="checkbox" class="category-filter" value="laptops" /> Laptops</label>
+    <label><input type="checkbox" class="category-filter" value="men" /> Men</label>
+    <label><input type="checkbox" class="category-filter" value="women" /> Women</label>
+  </div>
 
-      <div class="product-grid" id="product-grid">
-        <!-- Products will be rendered here -->
-      </div>
-    </section>
-  </main>
+  <div id="product-grid"></div>
 
   <script src="script.js"></script>
 </body>
