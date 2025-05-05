@@ -5,7 +5,7 @@ const products = [
     name: "iPhone 12",
     category: "phones",
     price: 799,
-    image: "https://via.placeholder.com/150"
+    image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTGEDr8fVQMGK7QkXEPguEeD7o7PiKDJTvghEkcTKZAEr9UaF15i_aOn4lxiW51L04JzaEmjgEtf_t2kh-8yNCxOGCTeOrnXaxJqxNiBNWgUZe9ZgEaU_mavw"
   },
   {
     id: 2,
