@@ -12,21 +12,21 @@ const products = [
     name: "MacBook Pro",
     category: "laptops",
     price: 1299,
-    image: "https://via.placeholder.com/150"
+    image: "https://i0.wp.com/www.originalmacguy.com/wp-content/uploads/2024/11/1280-M4-MacBook-Pro.png?w=1280&ssl=1"
   },
   {
     id: 3,
     name: "Men's T-Shirt",
     category: "men",
     price: 25,
-    image: "https://via.placeholder.com/150"
+    image: "https://unstd.in/cdn/shop/files/SAGE-GREEN-2.jpg?v=1734507963&width=1200"
   },
   {
     id: 4,
     name: "Women's Dress",
     category: "women",
     price: 45,
-    image: "https://via.placeholder.com/150"
+    image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTQ07vdCZG5v5n_9g1qBPxwMW25HG-wuGAMRr02SrwBR2zaaoQi_ZE_GVpgKOcSXxeB5dcwnCZ_n1f3lmWrqkkTghQ28cM07XicVFnxkonzo4jXKwyQpZPj"
   }
 ];
 
