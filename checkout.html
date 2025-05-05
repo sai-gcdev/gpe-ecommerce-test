@@ -4,41 +4,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GPE Store | Checkout</title>
+  <title>Checkout</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
-    <h1>GPE E-Commerce Store</h1>
+    <h1>Checkout</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
       <a href="cart.html">Cart</a>
-      <a href="checkout.html">Checkout</a>
     </nav>
   </header>
 
   <main>
-    <h2>Checkout</h2>
-    <form>
-      <label for="name">Name:</label><br />
-      <input type="text" id="name" name="name" required /><br />
-
-      <label for="address">Shipping Address:</label><br />
-      <input type="text" id="address" name="address" required /><br />
-
-      <label for="payment">Payment Method:</label><br />
-      <select id="payment" name="payment">
-        <option value="credit">Credit Card</option>
-        <option value="paypal">PayPal</option>
-      </select><br /><br />
-
-      <button type="submit" class="btn">Place Order</button>
+    <form onsubmit="placeOrder(event)">
+      <input type="text" placeholder="Full Name" required />
+      <input type="text" placeholder="Address" required />
+      <select required>
+        <option value="">Payment Method</option>
+        <option>Credit Card</option>
+        <option>PayPal</option>
+      </select>
+      <button type="submit">Place Order</button>
+      <button type="button" onclick="cancelOrder()">Cancel</button>
     </form>
+    <div id="order-msg"></div>
   </main>
 
   <footer>
-    <p>&copy; 2025 GPE Store. All rights reserved.</p>
+    <p>&copy; 2025 GPE E-Commerce</p>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>
