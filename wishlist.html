@@ -3,54 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Wishlist</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>ShopEase - Wishlist</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <header>
-    <h1>My Wishlist</h1>
-    <a href="index.html">Back to Store</a>
+    <h1>ShopEase</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+    </nav>
   </header>
-  
-  <div id="wishlist-container"></div>
 
-  <script>
-    function renderWishlist() {
-      const wishlistContainer = document.getElementById('wishlist-container');
-      const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+  <main>
+    <h2>Your Wishlist</h2>
+    <section id="wishlistGrid" class="product-grid">
+      <!-- Wishlist items will be rendered here -->
+    </section>
+  </main>
 
-      if (wishlist.length === 0) {
-        wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
-        return;
-      }
-
-      wishlistContainer.innerHTML = '';
-      wishlist.forEach(product => {
-        const card = document.createElement('div');
-        card.classList.add('product-card');
-        card.innerHTML = \`
-          <img src="\${product.image}" alt="\${product.name}" />
-          <div>
-            <h4>\${product.name}</h4>
-            <p>$\${product.price}</p>
-          </div>
-          <button class="remove-button" data-id="\${product.id}">Remove</button>
-        \`;
-        wishlistContainer.appendChild(card);
-      });
-
-      document.querySelectorAll('.remove-button').forEach(btn => {
-        btn.addEventListener('click', function () {
-          const id = parseInt(this.dataset.id);
-          let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-          wishlist = wishlist.filter(item => item.id !== id);
-          localStorage.setItem('wishlist', JSON.stringify(wishlist));
-          renderWishlist();
-        });
-      });
-    }
-
-    renderWishlist();
-  </script>
+  <script src="js/products.js"></script>
+  <script src="js/wishlist.js"></script>
 </body>
 </html>
