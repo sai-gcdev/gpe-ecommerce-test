@@ -19,6 +19,12 @@
     deploymentId: 'f813f27a-0633-4d16-9834-9e4f9caec502'
   });
 </script>
+  <script>
+  Genesys("subscribe", "Journey.ready", function(o) {
+    console.log("Journey plugin is ready");
+  });
+</script>
+
 </head>
 <body>
   <header>
