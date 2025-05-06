@@ -26,11 +26,23 @@
 </script>
   <script>
 Genesys("command", "Journey.pageview", {
-  pageTitle: "Homepage",
-  pageLocation: "https://sunny-heliotrope-bf2d87.netlify.app/",
-  customAttributes: { visitorPreferredLang: "en",name:"sai",age: 26},
-  traitsMapper: []
+  customAttributes: {
+    loggedIn: true,
+    customerId: "12345", // changed from customer_id to customerId
+    email: "john@example.com"
+  },
+  traitsMapper: [
+    {
+      source: "customerId", // must exactly match the key above
+      target: "customerId"
+    },
+    {
+      source: "email",
+      target: "email"
+    }
+  ]
 });
+
 </script>
 
 </head>
