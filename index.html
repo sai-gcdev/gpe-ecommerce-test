@@ -3,67 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Product Store</title>
+  <title>ShopSmart - Home</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <!-- Header -->
   <header>
-    <div class="logo">MyStore</div>
-    <nav id="navbar">
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Cart</a></li>
-        <li><a href="#">Wishlist</a></li>
-      </ul>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+    <h1>ShopSmart</h1>
+    <nav>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="cart.html">Cart</a>
     </nav>
   </header>
-
-  <!-- Sidebar Filters -->
-  <aside id="sidebar">
-    <h2>Filters</h2>
-    <div class="filter-group">
-      <label for="category-filter">Category:</label>
-      <select id="category-filter">
-        <option value="all">All</option>
-        <option value="Electronics">Electronics</option>
-        <option value="Footwear">Footwear</option>
-        <option value="Accessories">Accessories</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label for="price-filter">Price Range:</label>
-      <input type="range" id="price-filter" min="0" max="200" step="10" />
-      <span id="price-value">₹0 - ₹200</span>
-    </div>
-    <div class="filter-group">
-      <label for="sort-filter">Sort By:</label>
-      <select id="sort-filter">
-        <option value="default">Default</option>
-        <option value="price-asc">Price: Low to High</option>
-        <option value="name-asc">Name: A-Z</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label for="search-box">Search:</label>
-      <input type="text" id="search-box" placeholder="Search products..." />
-    </div>
-  </aside>
-
-  <!-- Main Content -->
   <main>
-    <section id="product-list" class="product-grid">
-      <!-- Products will be rendered here -->
-    </section>
+    <section id="product-list"></section>
   </main>
-
   <script src="js/products.js"></script>
-  <script src="js/filters.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
