@@ -1,3 +1,5 @@
+// payment.js
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('payment-form');
   const confirmationMessage = document.getElementById('confirmation-message');
