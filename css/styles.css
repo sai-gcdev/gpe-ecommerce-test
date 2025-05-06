@@ -50,3 +50,39 @@ button {
 button:hover {
   background-color: #218838;
 }
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-top: 10px;
+}
+
+form input,
+form select {
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.form-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#confirmation-message {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
