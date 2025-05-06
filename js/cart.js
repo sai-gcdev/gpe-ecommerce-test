@@ -1,19 +1,37 @@
-const cartItems = document.getElementById("cart-items");
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
+document.addEventListener('DOMContentLoaded', () => {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const section = document.getElementById('cart-items');
+  let total = 0;
 
-cart.forEach((id) => {
-  const product = products.find((p) => p.id === id);
-  const itemDiv = document.createElement("div");
-  itemDiv.classList.add("cart-item");
-  itemDiv.innerHTML = `
-    <img src="${product.image}" alt="${product.name}" width="100%" />
-    <h3>${product.name}</h3>
-    <p>$${product.price}</p>
-  `;
-  cartItems.appendChild(itemDiv);
+  if (cart.length === 0) {
+    section.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
+
+  cart.forEach((product, index) => {
+    total += product.price;
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <h3>${product.name}</h3>
+      <img src="${product.image}" width="150" />
+      <p>${product.price} INR</p>
+      <button onclick="removeFromCart(${index})">Remove</button>
+    `;
+    section.appendChild(div);
+  });
+
+  const totalDisplay = document.createElement('h3');
+  totalDisplay.textContent = `Total: ₹${total}`;
+  section.appendChild(totalDisplay);
+
+  document.getElementById('checkout-button').addEventListener('click', () => {
+    window.location.href = 'payment.html';
+  });
 });
 
-document.getElementById("checkout-button").addEventListener("click", () => {
-  window.location.href = "
-::contentReference[oaicite:36]{index=36}
- 
+function removeFromCart(index) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  location.reload();
+}
