@@ -25,7 +25,12 @@
   });
 </script>
   <script>
-  Genesys("command", "Journey.pageview");
+Genesys("command", "Journey.pageview", {
+  pageTitle: "Homepage",
+  pageLocation: "https://sunny-heliotrope-bf2d87.netlify.app/",
+  customAttributes: { visitorPreferredLang: "en",name:"sai",age: 26},
+  traitsMapper: []
+});
 </script>
 
 </head>
