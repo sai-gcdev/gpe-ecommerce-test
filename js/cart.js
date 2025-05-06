@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const totalDisplay = document.createElement('h3');
-  totalDisplay.textContent = `Total: ₹${total}`;
-  section.appendChild(totalDisplay);
-
+    totalDisplay.textContent = `Total: ₹${total.toFixed(2)}`;
+    section.appendChild(totalDisplay);
+  
   document.getElementById('checkout-button').addEventListener('click', () => {
     window.location.href = 'payment.html';
   });
