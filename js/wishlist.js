@@ -1,5 +1,3 @@
-// wishlist.js
-
 document.addEventListener('DOMContentLoaded', () => {
   const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
   const section = document.getElementById('wishlist-items');
@@ -14,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     div.innerHTML = `
       <h3>${product.name}</h3>
       <img src="${product.image}" width="150" />
-      <p>₹${product.price.toFixed(2)}</p>
+      <p>${product.price} INR</p>
       <button onclick="removeFromWishlist(${product.id})">Remove</button>
       <button onclick="addToCartFromWishlist(${product.id})">Add to Cart</button>
     `;

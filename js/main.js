@@ -1,5 +1,3 @@
-// main.js
-
 document.addEventListener('DOMContentLoaded', () => {
   const productList = document.getElementById('product-list');
 
@@ -17,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <img src="${product.image}" alt="${product.name}" width="150" />
       <h3>${product.name}</h3>
       <p>Category: ${product.category}</p>
-      <p>Price: ₹${product.price.toFixed(2)}</p>
+      <p>Price: ₹${product.price}</p>
       <button class="wishlist-btn" data-id="${product.id}">Add to Wishlist</button>
       <button class="cart-btn" data-id="${product.id}">Add to Cart</button>
     `;
@@ -37,9 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!exists) {
         wishlist.push(selectedProduct);
         localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        alert(`${selectedProduct.name} added to wishlist!`);
-      } else {
-        alert(`${selectedProduct.name} is already in your wishlist.`);
       }
     });
   });
@@ -54,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
       cart.push(selectedProduct);
       localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${selectedProduct.name} added to cart!`);
     });
   });
 });
