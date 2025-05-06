@@ -1,30 +1,54 @@
-const productList = document.getElementById("product-list");
+document.addEventListener('DOMContentLoaded', () => {
+  const productList = document.getElementById('product-list');
 
-products.forEach((product) => {
-  const productDiv = document.createElement("div");
-  productDiv.classList.add("product");
-  productDiv.innerHTML = `
-    <img src="${product.image}" alt="${product.name}" width="100%" />
-    <h3>${product.name}</h3>
-    <p>$${product.price}</p>
-    <button onclick="addToWishlist(${product.id})">Add to Wishlist</button>
-    <button onclick="addToCart(${product.id})">Add to Cart</button>
-  `;
-  productList.appendChild(productDiv);
+  // Check if products are loaded
+  if (!productList || typeof products === 'undefined') {
+    console.error("Product list container or products data is missing.");
+    return;
+  }
+
+  // Render each product to the page
+  products.forEach(product => {
+    const div = document.createElement('div');
+    div.classList.add('product-card');
+    div.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" width="150" />
+      <h3>${product.name}</h3>
+      <p>Category: ${product.category}</p>
+      <p>Price: ₹${product.price}</p>
+      <button class="wishlist-btn" data-id="${product.id}">Add to Wishlist</button>
+      <button class="cart-btn" data-id="${product.id}">Add to Cart</button>
+    `;
+    productList.appendChild(div);
+  });
+
+  // Handle Wishlist Button Clicks
+  document.querySelectorAll('.wishlist-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const productId = parseInt(button.dataset.id);
+      const selectedProduct = products.find(p => p.id === productId);
+      if (!selectedProduct) return;
+
+      let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      const exists = wishlist.find(p => p.id === selectedProduct.id);
+
+      if (!exists) {
+        wishlist.push(selectedProduct);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      }
+    });
+  });
+
+  // Handle Cart Button Clicks
+  document.querySelectorAll('.cart-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const productId = parseInt(button.dataset.id);
+      const selectedProduct = products.find(p => p.id === productId);
+      if (!selectedProduct) return;
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(selectedProduct);
+      localStorage.setItem('cart', JSON.stringify(cart));
+    });
+  });
 });
-
-function addToWishlist(id) {
-  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-  if (!wishlist.includes(id)) {
-    wishlist.push(id);
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-  }
-}
-
-function addToCart(id) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  if (!cart.includes(id)) {
-    cart.push(id);
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-}
