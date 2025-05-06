@@ -3,40 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Cart</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>ShopEase - Cart</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <header>
-    <div class="logo">🛒 MyShop - Cart</div>
+    <h1>ShopEase</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="wishlist.html">Wishlist</a>
+    </nav>
   </header>
 
   <main>
-    <section class="content">
-      <button onclick="history.back()" style="margin-bottom: 1rem;">← Back to Shop</button>
-      <h2>Your Cart</h2>
-      <div id="cart-items" class="product-grid"></div>
-    </section>
+    <h2>Your Cart</h2>
+    <section id="cartGrid" class="product-grid"></section>
+    <div>
+      <h3>Total: $<span id="totalPrice">0.00</span></h3>
+      <a href="payment.html"><button>Proceed to Payment</button></a>
+    </div>
   </main>
 
-  <script>
-    const cartItemsContainer = document.getElementById("cart-items");
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    if (cart.length === 0) {
-      cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
-    } else {
-      cart.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" />
-          <h4>${product.name}</h4>
-          <p>$${product.price}</p>
-        `;
-        cartItemsContainer.appendChild(card);
-      });
-    }
-  </script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
 </body>
 </html>
