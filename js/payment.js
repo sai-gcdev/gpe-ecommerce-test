@@ -12,8 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const paymentType = document.getElementById('paymentType').value;
     const voucher = document.getElementById('voucher').value;
 
+    // Clear cart and wishlist
+    localStorage.removeItem('cart');
+    localStorage.removeItem('wishlist');
+
+    // Display confirmation
     confirmationMessage.innerHTML = `
-      <h2>Order Placed Successfully!</h2>
+      <h2>🎉 Order Placed Successfully!</h2>
       <p><strong>Name:</strong> ${customerName}</p>
       <p><strong>Location:</strong> ${location}</p>
       <p><strong>Delivery Date:</strong> ${deliveryDate}</p>
