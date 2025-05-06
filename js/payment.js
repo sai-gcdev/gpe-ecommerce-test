@@ -1,38 +1,30 @@
-const form = document.getElementById("paymentForm");
-const confirmation = document.getElementById("confirmation");
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('payment-form');
+  const confirmationMessage = document.getElementById('confirmation-message');
+  const cancelButton = document.getElementById('cancel-button');
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  // Basic form validation
-  const name = form.name.value.trim();
-  const cardNumber = form.cardNumber.value.trim();
-  const expiry = form.expiry.value.trim();
-  const cvv = form.cvv.value.trim();
-  const voucher = form.voucher.value.trim();
-  
-  if (!name || !cardNumber || !expiry || !cvv) {
-    alert("Please fill all required fields.");
-    return;
-  }
+    const customerName = document.getElementById('customerName').value;
+    const location = document.getElementById('location').value;
+    const deliveryDate = document.getElementById('deliveryDate').value;
+    const paymentType = document.getElementById('paymentType').value;
+    const voucher = document.getElementById('voucher').value;
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const total = cart.reduce((sum, id) => {
-    const product = products.find(p => p.id === id);
-    return sum + (product ? product.price : 0);
-  }, 0);
+    confirmationMessage.innerHTML = `
+      <h2>Order Placed Successfully!</h2>
+      <p><strong>Name:</strong> ${customerName}</p>
+      <p><strong>Location:</strong> ${location}</p>
+      <p><strong>Delivery Date:</strong> ${deliveryDate}</p>
+      <p><strong>Payment Type:</strong> ${paymentType}</p>
+      ${voucher ? `<p><strong>Voucher Applied:</strong> ${voucher}</p>` : ''}
+    `;
+    confirmationMessage.classList.remove('hidden');
+    form.classList.add('hidden');
+  });
 
-  const discount = voucher.toLowerCase() === "save10" ? 0.1 * total : 0;
-  const finalAmount = total - discount;
-
-  localStorage.removeItem("cart");
-
-  confirmation.innerHTML = `
-    <h3>🎉 Order Placed Successfully!</h3>
-    <p>Thank you, ${name}.</p>
-    <p>Total Paid: $${finalAmount.toFixed(2)} (${discount > 0 ? 'Voucher Applied!' : 'No Voucher'})</p>
-    <p>Your items will be shipped soon!</p>
-  `;
-
-  form.reset();
+  cancelButton.addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
 });
