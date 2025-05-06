@@ -3,28 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ShopEase - Cart</title>
+  <title>ShopSmart - Cart</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <header>
-    <h1>ShopEase</h1>
+    <h1>Your Cart</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="wishlist.html">Wishlist</a>
     </nav>
   </header>
-
   <main>
-    <h2>Your Cart</h2>
-    <section id="cartGrid" class="product-grid"></section>
-    <div>
-      <h3>Total: $<span id="totalPrice">0.00</span></h3>
-      <a href="payment.html"><button>Proceed to Payment</button></a>
-    </div>
+    <section id="cart-items"></section>
+    <button id="checkout-button">Proceed to Payment</button>
   </main>
-
-  <script src="js/products.js"></script>
   <script src="js/cart.js"></script>
 </body>
 </html>
