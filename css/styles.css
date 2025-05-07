@@ -86,3 +86,8 @@ form select {
   display: none;
 }
 
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
