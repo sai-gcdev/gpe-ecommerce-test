@@ -76,26 +76,14 @@
       category: "Electronics"
     };
 
-    // Track form interactions
-    Genesys("command", "Journey.formsTrack", {
-      selector: "#payment-form",
-      formName: "payment form",
-      captureFormDataOnAbandon: true,
-      customAttributes: { isVip: false },
-      traitsMapper: [
-        { fieldName: "customerName", traitName: "givenName" },
-        { fieldName: "location", traitName: "address" }
-      ]
-    });
-
-    // Track button click events with product details
-    Genesys("command", "Journey.trackClickEvents", {
-      clickEvents: [
+    // Track idle events
+    Genesys("command", "Journey.trackIdleEvents", {
+      idleEvents: [
         {
-          selector: "#place-order-button",
-          eventName: "place_order_clicked",
+          idleAfterSeconds: 30,
+          eventName: "idle_30_seconds",
           customAttributes: {
-            buttonType: "submit",
+            page: "payment",
             productId: productDetails.id,
             productName: productDetails.name,
             productPrice: productDetails.price,
@@ -103,14 +91,15 @@
           }
         },
         {
-          selector: "#cancel-button",
-          eventName: "cancel_button_clicked",
+          idleAfterSeconds: 90,
+          eventName: "idle_90_seconds",
           customAttributes: {
-            buttonType: "cancel",
+            page: "payment",
             productId: productDetails.id,
             productName: productDetails.name,
             productPrice: productDetails.price,
-            productCategory: productDetails.category
+            productCategory: productDetails.category,
+            currentCartValue: 2999
           }
         }
       ]
