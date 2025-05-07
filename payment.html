@@ -67,5 +67,17 @@
   </main>
 
   <script src="js/payment.js"></script>
+  <script>
+    Genesys("command", "Journey.formsTrack", {
+      selector: "#payment-form",
+      formName: "payment form",
+      captureFormDataOnAbandon: true,
+      customAttributes: { isVip: false },
+      traitsMapper: [
+        { fieldName: "customerName", traitName: "givenName" },
+        { fieldName: "location", traitName: "address" }
+      ]
+    });
+  </script>
 </body>
 </html>
