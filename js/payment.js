@@ -2,6 +2,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('payment-form');
   const confirmationMessage = document.getElementById('confirmation-message');
   const cancelButton = document.getElementById('cancel-button');
+  const placeOrderButton = document.getElementById('place-order-button');
+
+  // Disable the "Place Order" button initially
+  placeOrderButton.disabled = true;
+
+  // Function to check if all form fields are filled
+  const validateForm = () => {
+    const customerName = document.getElementById('customerName').value.trim();
+    const location = document.getElementById('location').value.trim();
+    const deliveryDate = document.getElementById('deliveryDate').value.trim();
+    const paymentType = document.getElementById('paymentType').value.trim();
+
+    // Enable the button only if all fields are filled
+    if (customerName && location && deliveryDate && paymentType) {
+      placeOrderButton.disabled = false;
+    } else {
+      placeOrderButton.disabled = true;
+    }
+  };
+
+  // Add event listeners to form fields to validate on input
+  form.addEventListener('input', validateForm);
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
