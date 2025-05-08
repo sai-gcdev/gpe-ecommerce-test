@@ -6,56 +6,46 @@
   <title>ShopSmart - Home</title>
   <link rel="stylesheet" href="css/styles.css" />
   <script type="text/javascript" charset="utf-8">
-  (function (g, e, n, es, ys) {
-    g['_genesysJs'] = e;
-    g[e] = g[e] || function () {
-      (g[e].q = g[e].q || []).push(arguments)
-    };
-    g[e].t = 1 * new Date();
-    g[e].c = es;
-    ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
-  })(window, 'Genesys', 'https://apps.usw2.pure.cloud/genesys-bootstrap/genesys.min.js', {
-    environment: 'prod-usw2',
-    deploymentId: 'f813f27a-0633-4d16-9834-9e4f9caec502'
-  });
-</script>
+    (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e;
+      g[e] = g[e] || function () {
+        (g[e].q = g[e].q || []).push(arguments)
+      };
+      g[e].t = 1 * new Date();
+      g[e].c = es;
+      ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+    })(window, 'Genesys', 'https://apps.usw2.pure.cloud/genesys-bootstrap/genesys.min.js', {
+      environment: 'prod-usw2',
+      deploymentId: 'f813f27a-0633-4d16-9834-9e4f9caec502'
+    });
+  </script>
   <script>
-  Genesys("subscribe", "Journey.ready", function(o) {
-    console.log("Journey plugin is ready");
-  });
-</script>
-  <script>
-Genesys("command", "Journey.pageview", {
-  customAttributes: {
-    loggedIn: true,
-    customerId: "12345", // changed from customer_id to customerId
-    email: "john@example.com"
-  },
-  traitsMapper: [
-    {
-      source: "customerId", // must exactly match the key above
-      target: "customerId"
-    },
-    {
-      source: "email",
-      target: "email"
-    }
-  ]
-});
-
-</script>
-
+    Genesys("command", "Journey.pageview");
+  </script>
 </head>
 <body>
   <header>
-    <h1>ShopSmart</h1>
+    <h1>Welcome to ShopSmart</h1>
     <nav>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="cart.html">Cart</a>
+      <input type="text" id="search-box" placeholder="Search products..." />
+      <a href="wishlist.html" class="top-right">Wishlist</a>
+      <a href="cart.html" class="top-right">Cart</a>
     </nav>
   </header>
   <main>
-    <section id="product-list"></section>
+    <aside>
+      <h3>Filter by Category</h3>
+      <ul id="category-filter">
+        <li data-category="all">All</li>
+        <li data-category="Electronics">Electronics</li>
+        <li data-category="Fashion">Fashion</li>
+        <li data-category="Accessories">Accessories</li>
+      </ul>
+      <h3>Filter by Price</h3>
+      <input type="range" id="price-filter" min="0" max="200" step="10" />
+      <span id="price-value">200</span>
+    </aside>
+    <section id="product-list" class="responsive-grid"></section>
   </main>
   <script src="js/products.js"></script>
   <script src="js/main.js"></script>
