@@ -102,3 +102,17 @@ button {
 button:hover {
   background-color: #218838;
 }
+
+.wishlist-icon {
+  font-size: 1.5em;
+  cursor: pointer;
+  color: white;
+}
+
+.wishlist-icon.active {
+  color: red;
+}
+
+.cart-btn {
+  margin-top: 0.5em;
+}
