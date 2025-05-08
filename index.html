@@ -1,33 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ShopSmart - Home</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <script type="text/javascript" charset="utf-8">
-    (function (g, e, n, es, ys) {
-      g['_genesysJs'] = e;
-      g[e] = g[e] || function () {
-        (g[e].q = g[e].q || []).push(arguments)
-      };
-      g[e].t = 1 * new Date();
-      g[e].c = es;
-      ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
-    })(window, 'Genesys', 'https://apps.usw2.pure.cloud/genesys-bootstrap/genesys.min.js', {
-      environment: 'prod-usw2',
-      deploymentId: 'f813f27a-0633-4d16-9834-9e4f9caec502'
-    });
-  </script>
-  <script>
-    Genesys("command", "Journey.pageview");
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple E-Commerce</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
-    <h1>Welcome to ShopSmart</h1>
+    <h1>Welcome to Simple E-Commerce</h1>
     <nav>
-      <input type="text" id="search-box" placeholder="Search products..." />
+      <input type="text" id="search-box" placeholder="Search products...">
       <a href="wishlist.html" class="top-right">Wishlist</a>
       <a href="cart.html" class="top-right">Cart</a>
     </nav>
@@ -42,7 +25,7 @@
         <li data-category="Accessories">Accessories</li>
       </ul>
       <h3>Filter by Price</h3>
-      <input type="range" id="price-filter" min="0" max="200" step="10" />
+      <input type="range" id="price-filter" min="0" max="200" step="10">
       <span id="price-value">200</span>
     </aside>
     <section id="product-list" class="responsive-grid"></section>
