@@ -47,10 +47,6 @@ aside {
   border-right: 1px solid #ccc;
 }
 
-aside h3 {
-  margin-top: 0;
-}
-
 aside ul {
   list-style: none;
   padding: 0;
@@ -86,10 +82,9 @@ aside ul li:hover {
 }
 
 .product-card img {
-  width: 100%; /* Ensures the image takes up the full width of its container */
-  height: 150px; /* Fixes the height of the image */
-  object-fit: cover; /* Ensures the image is cropped to fit the container */
-  display: block; /* Prevents inline spacing issues */
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 
 button {
@@ -102,18 +97,4 @@ button {
 
 button:hover {
   background-color: #218838;
-}
-
-.wishlist-icon {
-  font-size: 1.5em;
-  cursor: pointer;
-  color: white;
-}
-
-.wishlist-icon.active {
-  color: red;
-}
-
-.cart-btn {
-  margin-top: 0.5em;
 }
